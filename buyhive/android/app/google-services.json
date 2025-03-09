@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "376497531154",
+    "project_id": "e-commercetestapp",
+    "storage_bucket": "e-commercetestapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376497531154:android:7121b761c9f1f845b12bcb",
+        "android_client_info": {
+          "package_name": "com.example.buyhive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKMjghKYydO2_ebhVWmh4TdbNE6AwrTtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
