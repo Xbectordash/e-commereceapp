@@ -33,7 +33,7 @@ Check out the demo video of **BuyHive** to see the app in action:
 
 [![BuyHive Demo Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/shorts/asZMz4-IU8A)
 
-*(Replace `YOUR_VIDEO_ID` with the actual YouTube video ID of your demo.)*
+
 
 ---
 
