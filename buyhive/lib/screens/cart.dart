@@ -14,7 +14,6 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   final TextEditingController couponController = TextEditingController();
     void applyCoupon(BuildContext context) {
     String coupon = couponController.text.trim();
-    // Your logic here
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Coupon '$coupon' applied")),
     );
@@ -89,10 +88,6 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   }
 }
 
-
-
-// ─────────────────────────────────────────────────────────────
-// 🧩 Cart Item Tile Widget
 class CartItemTile extends StatelessWidget {
   final Map<String, dynamic> item;
   final VoidCallback onRemove;
@@ -182,8 +177,6 @@ class CartItemTile extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-// 📦 Shipping Options Widget
 class ShippingOptions extends StatelessWidget {
   final bool standardShipping;
   final Function(bool) onOptionChanged;
@@ -213,11 +206,8 @@ class ShippingOptions extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-// 💳 Order Summary Card Widget
-
 class CheckoutStepIndicator extends StatelessWidget {
-  final int currentStep; // 0 = Cart, 1 = Delivery, 2 = Payment
+  final int currentStep;
 
   const CheckoutStepIndicator({super.key, required this.currentStep});
 
@@ -278,9 +268,6 @@ class CheckoutStepIndicator extends StatelessWidget {
   }
 }
 
-
-
-
 class OrderSummaryCard extends StatelessWidget {
   const OrderSummaryCard({super.key});
 
@@ -288,7 +275,6 @@ class OrderSummaryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Summary Card
         Card(
           elevation: 3,
           shape: RoundedRectangleBorder(
@@ -318,8 +304,6 @@ class OrderSummaryCard extends StatelessWidget {
             ),
           ),
         ),
-
-        // Proceed to Shipping Button
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: SizedBox(
@@ -332,9 +316,7 @@ class OrderSummaryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              onPressed: () {
-                // Navigate to Shipping Screen or perform action
-              },
+              onPressed: () {},
               child: const Text(
                 "Proceed to Shipping",
                 style: TextStyle(fontSize: 16, color: Colors.white),
@@ -371,7 +353,6 @@ class OrderSummaryCard extends StatelessWidget {
     );
   }
 }
-
 
 class StylishCartItem extends StatelessWidget {
   final String imageUrl;
@@ -414,7 +395,6 @@ class StylishCartItem extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Product Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(
@@ -427,8 +407,6 @@ class StylishCartItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 12),
-
-                // Product Details
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -522,8 +500,6 @@ class StylishCartItem extends StatelessWidget {
                 ),
               ],
             ),
-
-            // Delete Icon
             Positioned(
               top: 0,
               right: 0,
@@ -537,11 +513,7 @@ class StylishCartItem extends StatelessWidget {
       ),
     );
   }
-
-
 }
-
-
 
 class DiscountCouponCard extends StatefulWidget {
   final TextEditingController couponController;
@@ -564,7 +536,7 @@ class _DiscountCouponCardState extends State<DiscountCouponCard> {
     if (value != null) {
       setState(() {
         _selectedCoupon = value;
-        widget.couponController.text = value; // optional autofill
+        widget.couponController.text = value;
       });
     }
   }
@@ -585,8 +557,6 @@ class _DiscountCouponCardState extends State<DiscountCouponCard> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
-
-            // Coupon TextField + Apply Button
             Row(
               children: [
                 Expanded(
@@ -618,15 +588,12 @@ class _DiscountCouponCardState extends State<DiscountCouponCard> {
                 ),
               ],
             ),
-
             const SizedBox(height: 20),
             const Text(
               "Applicable Coupons",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-
-            // Coupon List Items
             _buildRadioTile("SHIRT20", "SHIRT20", "Get 20% off on your favorite shirts!"),
             _buildRadioTile("BUYSHIRT10", "BUYSHIRT10", "Save \$10 on your shirt purchase."),
             _buildRadioTile("CLASSYSHIRTS25", "CLASSYSHIRTS25", "25% off on premium shirts"),

@@ -1,6 +1,6 @@
 import 'package:buyhive/screens/filter.dart';
 import 'package:buyhive/widgets/fotter.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:buyhive/api.dart';
 import 'package:buyhive/screens/product.dart';
@@ -44,24 +44,24 @@ class _ProductListPageState extends State<ProductListPage> {
       ),
       body: ListView(
         children: [
-          // Sort & Filter Row
+          
           Row(
             children: [
               SizedBox(width: 20),
               ElevatedButton.icon(
                 onPressed: () {
-                  // Sort action
+                  
                 },
                 icon: Icon(Icons.swap_vert,
-                    color: Colors.white), // Sort icon variant
+                    color: Colors.white), 
                 label: Text("Sort By", style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade700,
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero, // ⬅️ Makes it rectangle
+                    borderRadius: BorderRadius.zero, 
                   ),
-                  elevation: 0, // Optional: removes extra shadow
+                  elevation: 0, 
                 ),
               ),
               SizedBox(width: 26),
@@ -73,13 +73,13 @@ class _ProductListPageState extends State<ProductListPage> {
                   );
                 },
                 icon: Icon(Icons.filter_list,
-                    color: Colors.white), // Filter icon variant
+                    color: Colors.white), 
                 label: Text("Filter", style: TextStyle(color: Colors.white)),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade700,
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.zero, // ⬅️ Makes it rectangle
+                    borderRadius: BorderRadius.zero, 
                   ),
                   elevation: 0,
                 ),
@@ -190,7 +190,7 @@ class _ProductListPageState extends State<ProductListPage> {
                                 ),
                                 SizedBox(width: 6),
                                 Text(
-                                  "\$740", // hardcoded original price for demo
+                                  "\$740", 
                                   style: TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     color: Colors.grey,

@@ -1,3 +1,4 @@
+import 'package:buyhive/screens/cart.dart';
 import 'package:flutter/material.dart';
 
 class SubCategoriesScreen extends StatelessWidget {
@@ -7,7 +8,7 @@ class SubCategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Define subcategories based on the main category
+    
     Map<String, Map<String, List<String>>> subcategories = {
       "Men": {
         "Clothing": ["T-Shirts", "Shirts", "Jeans", "Jacket"],
@@ -43,7 +44,7 @@ class SubCategoriesScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              // TODO: Navigate to cart page
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCartPage()));
             },
           ),
         ],

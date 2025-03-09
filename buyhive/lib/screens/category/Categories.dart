@@ -22,7 +22,7 @@ class CategoriesScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
-              // TODO: Navigate to cart page
+              
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ShoppingCartPage()));
             },
@@ -36,7 +36,7 @@ class CategoriesScreen extends StatelessWidget {
             title: Text(categories[index]),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              // TODO: Navigate to category details page
+             
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SubCategoriesScreen(category: categories[index])));
 

@@ -13,14 +13,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(
-        // shrinkWrap: true,
         children: [
           buildHeroImage(),
           const SizedBox(height: 20),
           ShopByBrand(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-            
             child: const Text(
               "Browse by Category",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -49,9 +47,6 @@ class HomeScreen extends StatelessWidget {
           FAQSection(),
           const SizedBox(height: 60),
           Footer(),
-          
-
-          // Call the function here
         ],
       ),
     );
@@ -71,7 +66,7 @@ PreferredSizeWidget buildAppBar(BuildContext context) {
               elevation: 0,
               leading: IconButton(
                 icon: const Icon(Icons.menu, color: Colors.black, size: 40),
-                onPressed: () {  // ✅ Yahan se `context` hata diya
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => CategoriesScreen()),
@@ -186,13 +181,13 @@ class ShopByBrand extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: InteractiveViewer(
-                        panEnabled: false, // Disables panning
+                        panEnabled: false,
                         boundaryMargin: const EdgeInsets.all(10),
                         minScale: 1.0,
-                        maxScale: 4.0, // Allows zooming up to 4x
+                        maxScale: 4.0,
                         child: Image.asset(
                           shopbybrand[index],
-                          fit: BoxFit.contain, // Adjusts image properly
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -206,8 +201,6 @@ class ShopByBrand extends StatelessWidget {
     );
   }
 }
-
-// Select by category
 
 class BrowseByCategory extends StatelessWidget {
   BrowseByCategory({Key? key}) : super(key: key);
@@ -223,11 +216,11 @@ class BrowseByCategory extends StatelessWidget {
     return SizedBox(
       height: 820,
       child: ListView.builder(
-        physics: NeverScrollableScrollPhysics(), // ✅ Scrolling Disabled
+        physics: NeverScrollableScrollPhysics(),
         itemCount: browsebyCategory.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.all(10), // ✅ Adjusted spacing
+            padding: EdgeInsets.all(10),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(1),
               child: Container(
@@ -369,8 +362,8 @@ class MensCollection extends StatelessWidget {
             Expanded(
               child: Divider(
                 thickness: 2,
-                indent: 10, // Left side se 10px chhodi hui line
-                endIndent: 10, // Right side se 10px chhodi hui line
+                indent: 10,
+                endIndent: 10,
                 color: Colors.black,
               ),
             ),
@@ -479,8 +472,8 @@ class WomensCollection extends StatelessWidget {
             Expanded(
               child: Divider(
                 thickness: 2,
-                indent: 10, // Left side se 10px chhodi hui line
-                endIndent: 10, // Right side se 10px chhodi hui line
+                indent: 10,
+                endIndent: 10,
                 color: Colors.black,
               ),
             ),
@@ -622,4 +615,3 @@ class FAQSection extends StatelessWidget {
     );
   }
 }
-

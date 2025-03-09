@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 40,
-                  backgroundImage: AssetImage('assets/images/profile.jpeg'), // Change with real image
+                  backgroundImage: AssetImage('assets/images/profile.jpeg'), 
                 ),
                 const SizedBox(height: 10),
                 const Text(
@@ -45,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // Profile Menu
+          
           Expanded(
             child: ListView(
               children: const [

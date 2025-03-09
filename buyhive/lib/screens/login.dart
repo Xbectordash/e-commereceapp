@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:buyhive/screens/home.dart'; // Successful login ke baad home screen
-import 'package:buyhive/screens/createaccount.dart'; // Sign up screen
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:buyhive/screens/home.dart';
+import 'package:buyhive/screens/createaccount.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,12 +12,24 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _isObscure = true; // Password hide/show
-  bool _rememberMe = false; // Checkbox for Remember Me
-  final TextEditingController emailController = TextEditingController();
+  bool _isObscure = true;
+  bool _rememberMe = false;
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool _isLoading = false; // Loading state
+  bool _isLoading = false;
+
+  Future<String?> fetchEmailFromUsername(String username) async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .where('username', isEqualTo: username)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      return snapshot.docs.first['email'];
+    }
+    return null;
+  }
 
   Future<void> loginUser() async {
     if (!_formKey.currentState!.validate()) return;
@@ -24,12 +37,25 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _isLoading = true);
 
     try {
+      String email = usernameController.text.trim();
+      String password = passwordController.text.trim();
+
+      if (!email.contains('@')) {
+        String? fetchedEmail = await fetchEmailFromUsername(email);
+        if (fetchedEmail == null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("No user found with this username.")),
+          );
+          return;
+        }
+        email = fetchedEmail;
+      }
+
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+        email: email,
+        password: password,
       );
 
-      // Navigate to Home Screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -66,7 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Red header section
             Container(
               height: 250,
               decoration: BoxDecoration(
@@ -82,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(height: 20),
                     Image.asset(
-                      'assets/images/logo.png', // Your logo
+                      'assets/images/logo.png',
                       height: 120,
                     ),
                     SizedBox(height: 10),
@@ -99,7 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
 
-            // Login form
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Form(
@@ -113,26 +137,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 20),
 
-                    // Email (Username replaced with Email for Firebase Authentication)
-                    Text("Email*", style: TextStyle(fontSize: 16)),
+                    Text("Username or Email*", style: TextStyle(fontSize: 16)),
                     SizedBox(height: 5),
                     TextFormField(
-                      controller: emailController,
+                      controller: usernameController,
                       decoration: InputDecoration(
-                        hintText: "Enter your email",
+                        hintText: "Enter your username or email",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
                       validator: (value) {
-                        if (value == null || value.isEmpty) return "Email is required";
-                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) return "Enter a valid email";
+                        if (value == null || value.isEmpty) return "Username or email is required";
                         return null;
                       },
                     ),
                     SizedBox(height: 20),
 
-                    // Password
                     Text("Password*", style: TextStyle(fontSize: 16)),
                     SizedBox(height: 5),
                     TextFormField(
@@ -163,7 +184,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 10),
 
-                    // Remember Me & Forgot Password
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -181,16 +201,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         TextButton(
-                          onPressed: () {
-                            // TODO: Forgot Password action
-                          },
+                          onPressed: () {},
                           child: Text("Forgot Password?"),
                         ),
                       ],
                     ),
                     SizedBox(height: 20),
 
-                    // Login Button
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
@@ -212,7 +229,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 20),
 
-                    // Sign Up link
                     Center(
                       child: GestureDetector(
                         onTap: () {

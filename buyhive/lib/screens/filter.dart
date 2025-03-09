@@ -8,10 +8,10 @@ class FilterScreen extends StatefulWidget {
 }
 
 class _FilterScreenState extends State<FilterScreen> {
-  // Active selection index
+  
   int selectedIndex = 0;
 
-  // Filter categories
+  
   final List<String> filters = [
     "Price",
     "Category",
@@ -20,7 +20,7 @@ class _FilterScreenState extends State<FilterScreen> {
     "Size & Fit"
   ];
 
-  // Checkboxes state
+  
   Map<String, bool> priceFilters = {
     "Below \$500": false,
     "Above \$500": false,
@@ -41,7 +41,7 @@ class _FilterScreenState extends State<FilterScreen> {
       ),
       body: Row(
         children: [
-          // Sidebar Filter Categories
+          
           Container(
             width: 120,
             color: Colors.grey[200],
@@ -70,7 +70,7 @@ class _FilterScreenState extends State<FilterScreen> {
             ),
           ),
 
-          // Filter Options Section
+    
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -82,7 +82,7 @@ class _FilterScreenState extends State<FilterScreen> {
     );
   }
 
-  // Function to display selected filter options
+  
   Widget _buildFilterOptions() {
     if (selectedIndex == 0) {
       return Column(

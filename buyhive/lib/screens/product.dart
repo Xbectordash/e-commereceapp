@@ -469,11 +469,11 @@ class WishlistButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Circular Icon Background
+    
           Container(
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              color: Color(0xFFF1F1F1), // Light background
+              color: Color(0xFFF1F1F1), 
             ),
             padding: const EdgeInsets.all(10),
             child: const Icon(
@@ -483,7 +483,7 @@ class WishlistButton extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          // Wishlist Text
+          
           const Text(
             "Add To Wishlist",
             style: TextStyle(
